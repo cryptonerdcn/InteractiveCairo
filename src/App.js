@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import logo from './logo.svg';
 import './App.css';
@@ -14,6 +14,7 @@ function App() {
     const [code, setCode] = React.useState(
         CODE_SAMPLE[index]
     );
+    const [isRunning, setIsRunning] = React.useState(false);
 
     const [output, setOutput] = React.useState("Output");
     const [title, setTitle] = React.useState(
@@ -25,21 +26,28 @@ function App() {
 
     const runHandler = async () => {
 
-        //program.setIsRunning(true);
+        setIsRunning(true);
         const [response, error] = await promiseHandler(
             runCode(code)
         );
         if (error) {
-
-            console.log(error.message, true);
+            console.log(error.message);
+            setOutput(error.message);
         } else {
             console.log("Success");
             console.log(response.output);
             setOutput(response.output);
         }
 
-        //program.setIsRunning(false);
+        setIsRunning(false);
     };
+
+    useEffect(()=>{
+            if (isRunning) {
+                setOutput("Running");
+            }
+        },
+        [isRunning === true]);
 
     return (
         <ProSidebarProvider>
@@ -64,7 +72,10 @@ function App() {
                             fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
                         }}
                     />
-                    <button onClick={runHandler}>Run</button>
+                    <button
+                        className={"EditorButton"}
+                        disabled={isRunning}
+                        onClick={runHandler}>Run</button>
                     <div className={"Output"}>
                         {output}
                     </div>
