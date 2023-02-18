@@ -8,9 +8,12 @@ import {MySidebar} from "./MySidebar";
 import {CODE_SAMPLE, LESSON_TITLE, LESSON_DETAIL} from "./Constants";
 import {apiRequest, runCode} from "./api-request";
 import {promiseHandler} from "./promise-handler";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = React.useState(
+        window.location.pathname.replace(/[^0-9]/g, '')
+    );
     const [code, setCode] = React.useState(
         CODE_SAMPLE[index]
     );
@@ -47,9 +50,17 @@ function App() {
                 setOutput("Running");
             }
         },
-        [isRunning === true]);
+        [isRunning]);
+
+    useEffect(()=>{
+        setCode(CODE_SAMPLE[index]);
+        setTitle(LESSON_TITLE[index]);
+        setDetail(LESSON_DETAIL[index]);
+    }, [index]);
+    
 
     return (
+        <BrowserRouter>
         <ProSidebarProvider>
 
             <div className="App">
@@ -82,6 +93,7 @@ function App() {
                 </div>
             </div>
         </ProSidebarProvider>
+        </BrowserRouter>
     );
 }
 
