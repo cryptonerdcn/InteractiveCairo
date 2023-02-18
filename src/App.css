@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  display: flex;
+  text-align: left;
 }
 
 .App-logo {
@@ -24,11 +25,20 @@
   color: white;
 }
 
+.Main {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  display: block;
+  align-items: flex-start;
+  justify-content: left;
+  white-space: pre-wrap;
+  padding: 0px 24px;
+}
+
 .Editor {
-  background-color: #f5f5f5;
+  background-color: #282c34;
   min-height: 20vh;
   display: block;
-  align-items: normal;
   justify-content: left;
 }
 
@@ -38,7 +48,8 @@
   display: block;
   align-items: normal;
   justify-content: left;
-  font-size: 12;
+  font-size: 12px;
+  color: #FFFFFF;
 }
 
 .App-link {
