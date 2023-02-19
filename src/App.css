@@ -25,9 +25,14 @@
   color: white;
 }
 
+.sidebar {
+  min-height: 100vh;
+}
+
 .Main {
   background-color: #FFFFFF;
   min-height: 100vh;
+  max-width: 100vh;
   display: block;
   align-items: flex-start;
   justify-content: left;
