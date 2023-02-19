@@ -10,7 +10,7 @@ const MySidebar = ({title, children}) => (
                 <MenuItem component={<Link to="lesson/1" />}> 1+1 </MenuItem>
             </SubMenu>
             <MenuItem> About </MenuItem>
-            <MenuItem> Twitter </MenuItem>
+            <MenuItem component={<Link to={{ pathname: "https://twitter.com/cryptonerdcn" }} target="_blank" />}> Twitter </MenuItem>
         </Menu>
     </Sidebar>
 );

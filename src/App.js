@@ -3,6 +3,7 @@ import './App.css';
 import {ProSidebarProvider} from 'react-pro-sidebar';
 import {MySidebar} from "./MySidebar";
 import {LessonPage} from "./LessonPage";
+import {Welcome} from "./Welcome";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 </MySidebar>
                 <Routes>
                     <Route path={`lesson/*`} element={<LessonPage />} />
+                    <Route path={`/`} element={<Welcome />} />
                 </Routes>
 
             </div>
